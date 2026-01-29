@@ -1,0 +1,47 @@
+{
+    "manifest_version": 3,
+    "name": "Amazon Review Scraper",
+    "version": "2.0.3",
+    "description": "Auto-scrape Amazon reviews across all star filters with resume capability",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://*.amazon.com/*",
+        "https://*.amazon.vn/*",
+        "https://*.amazon.co.uk/*",
+        "https://*.amazon.de/*",
+        "https://*.amazon.co.jp/*"
+    ],
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Amazon Review Scraper"
+    },
+    "background": {
+        "service_worker": "assets/background.js",
+        "type": "module"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.amazon.com/*",
+                "https://*.amazon.co.uk/*",
+                "https://*.amazon.vn/*",
+                "https://*.amazon.de/*",
+                "https://*.amazon.co.jp/*"
+            ],
+            "js": [
+                "assets/content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}
